@@ -1,0 +1,25 @@
+URBANO.IO V2 uses the following software,
+I.		URBANO.IO
+ 
+
+IMPORTANT READ CAREFULLY
+Copyright Notice and Disclaimer.
+
+I. URBANO.IO
+URBANO.IO is Copyright © 2023-2022, URBANO.IO (“Urbano”). All Rights Reserved.
+Urbano holds the exclusive, worldwide license to distribute and further develop URBANO.IO.
+This END USER LICENSE AGREEMENT (“EULA”) is a legal agreement between you, in your capacity as an individual and/or as an agent for your company, institution, or other entity (called herein the "User"), and URBANO for URBANO.IO, which includes computer software and may include associated media, printed materials, and electronic documentation.
+Downloading, installing, using, or copying URBANO.IO by the User or a third party indicates that the User agrees to be bound by the terms and conditions that follow.
+If you do not agree to the terms of this EULA, do not install or use URBANO.IO.
+URBANO.IO is a plug-in for the RHINOCEROS NURBS for Windows modeler that allows users to carry spectral lighting calculations. URBANO.IO consists of a compiled Rhinoceros 3D plugin and a standalone interactive window for simulation control and results display.  URBANO.IO uses third-party software. 
+URBANO grants to the User, and the User accepts, a non-transferable and non-exclusive license to use URBANO.IO only in the manner described in this EULA. All proprietary interest, right, title, and copyright in the Software which are not explicitly granted to you herein remain with URBANO.
+URBANO.IO is a subscription license, not sold. Therefore, you must treat this Software just like a book or any other copyrighted material (e.g., recordings or film). You may make archival copies of the Software. You may not distribute any portion of the Software or materials accompanying the Software.
+A  subscription license allows the installation of the Software on an unlimited number of machines. All machines using the Software must have the ability to communicate with the internet. The number of users that may use the Software concurrently at any time must not exceed the number of subscription licenses purchased for such use. The subscription will automatically renew annually from the date of purchase until the user cancels the subscription by contacting URBANO at info@urbano.io.
+In addition to license check-out statistics, URBANO.IO collects anonymous performance data, including run-time and hardware configuration data. You may opt out of performance-data reporting via the "CSSettings" command.
+IN NO EVENT SHALL URBANO BE LIABLE TO ANY PARTY FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, INCLUDING LOST PROFITS, ARISING OUT OF THE USE OF THIS SOFTWARE, EVEN IF URBANO HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+URBANO SPECIFICALLY DISCLAIMS ANY WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE SOFTWARE PROVIDED HEREUNDER IS PROVIDED "AS IS".
+URBANO HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
+
+This agreement is governed by the laws of the State of New York.
+
+

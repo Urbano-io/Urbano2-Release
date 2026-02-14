@@ -1,0 +1,21 @@
+name: Urbano2
+
+version: 2.2.1.0
+
+authors:
+  - Timur Dogan
+  - Yang Yang
+  - Patrick Kastner
+  
+description: >
+ Urbano is a new, easy-to-use, urban design tool that allows you to load urban data into Rhino. This enables you to build contextual models that can be used for site analysis and urban-scale simulations. With v2, Urbano supports terrain and allows you to build 3D site models with different data layers and sources.
+
+url: "https://urbano.io/"
+
+keywords:
+- site
+- data
+- mobility
+- location
+
+icon: icon.png
