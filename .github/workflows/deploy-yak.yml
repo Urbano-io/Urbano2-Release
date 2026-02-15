@@ -18,7 +18,7 @@ jobs:
         run: |
           # Find directories that look like versions (e.g., 2.2.1.1)
           # Sort numerically/version-wise to get the latest
-          $LATEST_VERSION = Get-ChildItem -Directory | Where-Name -Match '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$' | Sort-Object Name -Descending | Select-Object -First 1 -ExpandProperty Name
+          $LATEST_VERSION = Get-ChildItem -Directory | Where-Object { $_.Name -match '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$' } | Sort-Object Name -Descending | Select-Object -First 1 -ExpandProperty Name
           
           if (-not $LATEST_VERSION) {
             Write-Error "No version directories found."
