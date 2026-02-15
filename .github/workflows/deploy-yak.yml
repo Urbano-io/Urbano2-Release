@@ -30,6 +30,8 @@ jobs:
 
       - name: Deploy to Yak
         uses: crashcloud/yak-publish@main
+        env:
+          YAK_TOKEN: ${{ secrets.YAK_TOKEN }}
         with:
           package-name: "Urbano2"
           token: ${{ secrets.YAK_TOKEN }}
@@ -37,3 +39,28 @@ jobs:
           build-path: "${{ steps.find_version.outputs.version }}/"
           publish: 'production' # Publish to live server
           platform: 'any' # Or specific if needed, but 'any' is good for .gha usually
+
+      - name: Verify on Yak
+        shell: pwsh
+        run: |
+          $PACKAGE_NAME = "Urbano2"
+          $EXPECTED_VERSION = "${{ steps.find_version.outputs.version }}"
+          $MAX_ATTEMPTS = 12
+          $SLEEP_SECONDS = 10
+
+          for ($i = 1; $i -le $MAX_ATTEMPTS; $i++) {
+            $result = & .\yak.exe search $PACKAGE_NAME -a --prerelease 2>&1
+            $resultText = $result -join "`n"
+            Write-Host $resultText
+
+            if ($resultText -match [Regex]::Escape($EXPECTED_VERSION)) {
+              Write-Host "Verified on Yak: $PACKAGE_NAME $EXPECTED_VERSION"
+              exit 0
+            }
+
+            Write-Host "Attempt ${i}/${MAX_ATTEMPTS}: $EXPECTED_VERSION not visible yet. Retrying in ${SLEEP_SECONDS} seconds..."
+            Start-Sleep -Seconds $SLEEP_SECONDS
+          }
+
+          Write-Error "Yak verification failed: $PACKAGE_NAME $EXPECTED_VERSION was not found after $MAX_ATTEMPTS attempts."
+          exit 1
