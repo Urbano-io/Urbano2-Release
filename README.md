@@ -8,4 +8,6 @@
 
 **Urbano is an easy-to-use, urban design tool that allows you to load urban data into Rhino and Grasshopper.**
 
+[Download Latest Release](https://github.com/Urbano-io/Urbano2-Release/releases/latest)
+
 </div>
