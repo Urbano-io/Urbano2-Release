@@ -54,8 +54,10 @@ jobs:
           # Check if release exists
           if gh release view "$VERSION" >/dev/null 2>&1; then
             echo "Release $VERSION already exists. Updating assets..."
-            # Upload the .gha file, overwriting if it exists
-            gh release upload "$VERSION" "$GHA_FILE" --clobber
+            # Upload the .gha file, overwriting if it exists. Retry once on failure, then swallow error.
+            gh release upload "$VERSION" "$GHA_FILE" --clobber || \
+            (sleep 5 && gh release upload "$VERSION" "$GHA_FILE" --clobber) || \
+            echo "Upload failed after retry, but continuing workflow..."
           else
             echo "Creating new release for $VERSION..."
             # Create release and upload the initial asset
