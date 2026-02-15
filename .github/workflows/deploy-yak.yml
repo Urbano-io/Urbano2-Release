@@ -8,24 +8,25 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
 
       - name: Find Latest Version Directory
         id: find_version
+        shell: pwsh
         run: |
           # Find directories that look like versions (e.g., 2.2.1.1)
           # Sort numerically/version-wise to get the latest
-          LATEST_VERSION=$(ls -d */ | grep -E '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/$' | sed 's|/$||' | sort -V | tail -n 1)
+          $LATEST_VERSION = Get-ChildItem -Directory | Where-Name -Match '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$' | Sort-Object Name -Descending | Select-Object -First 1 -ExpandProperty Name
           
-          if [ -z "$LATEST_VERSION" ]; then
-            echo "No version directories found."
+          if (-not $LATEST_VERSION) {
+            Write-Error "No version directories found."
             exit 1
-          fi
+          }
           
-          echo "Latest version directory found: $LATEST_VERSION"
-          echo "version=$LATEST_VERSION" >> $GITHUB_OUTPUT
+          Write-Host "Latest version directory found: $LATEST_VERSION"
+          echo "version=$LATEST_VERSION" >> $env:GITHUB_OUTPUT
 
       - name: Deploy to Yak
         uses: crashcloud/yak-publish@main
