@@ -34,6 +34,6 @@ jobs:
           package-name: "Urbano2"
           token: ${{ secrets.YAK_TOKEN }}
           # Pointing to the version directory where manifest.yml and yak file reside
-          build-path: "${{ steps.find_version.outputs.version }}/**"
+          build-path: "${{ steps.find_version.outputs.version }}/"
           publish: 'production' # Publish to live server
           platform: 'any' # Or specific if needed, but 'any' is good for .gha usually
