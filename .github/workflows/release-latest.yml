@@ -1,0 +1,63 @@
+name: Release Latest Version
+
+on:
+  push:
+    branches:
+      - '**' # Run on every commit as requested
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Find Latest Version
+        id: find_version
+        run: |
+          # Find directories that look like versions (e.g., 1.0.0.0)
+          # Use verify sort (-V) to correctly handle version numbers
+          LATEST_VERSION=$(ls -d */ | grep -E '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/$' | sed 's|/$||' | sort -V | tail -n 1)
+          
+          if [ -z "$LATEST_VERSION" ]; then
+            echo "No version directories found."
+            exit 1
+          fi
+          
+          echo "Latest version found: $LATEST_VERSION"
+          echo "version=$LATEST_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Check for .gha file
+        id: check_file
+        run: |
+          VERSION="${{ steps.find_version.outputs.version }}"
+          GHA_FILE="./$VERSION/Urbano.SiteAnalysis.gha"
+          
+          if [ ! -f "$GHA_FILE" ]; then
+            echo "Error: .gha file not found at $GHA_FILE"
+            exit 1
+          fi
+          
+          echo "gha_path=$GHA_FILE" >> $GITHUB_OUTPUT
+
+      - name: Create or Update Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION="${{ steps.find_version.outputs.version }}"
+          GHA_FILE="${{ steps.check_file.outputs.gha_path }}"
+          
+          # Check if release exists
+          if gh release view "$VERSION" >/dev/null 2>&1; then
+            echo "Release $VERSION already exists. Updating assets..."
+            # Upload the .gha file, overwriting if it exists
+            gh release upload "$VERSION" "$GHA_FILE" --clobber
+          else
+            echo "Creating new release for $VERSION..."
+            # Create release and upload the initial asset
+            gh release create "$VERSION" "$GHA_FILE" --title "Release $VERSION" --notes "Automated release for version $VERSION"
+          fi
