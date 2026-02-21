@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="logo.png" alt="Urbano Logo" width="200"/>
+<img src="https://raw.githubusercontent.com/Urbano-io/Urbano2-Release/main/logo.png" alt="Urbano Logo" width="200"/>
 
 # Urbano2 
 
